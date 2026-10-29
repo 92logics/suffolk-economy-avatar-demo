@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Ambassador demo (92 Logics) for tender GHI/ED/PSR1</title>
+<meta name="description" content="Demonstration by 92 Logics for tender GHI/ED/PSR1. Not an official Suffolk County Council service.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%232bb3a3%22/%3E%3C/svg%3E"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="disclaimer" role="note" id="disclaimer">
+  <strong>Demonstration by 92 Logics for tender GHI/ED/PSR1 — not an official Suffolk County Council service.</strong>
+  Answers come only from a small set of neutral public-source summaries written for this demo. Data you enter stays in this browser.
+</div>
+<header class="top">
+  <div class="brand"><span class="dot"></span> Digital Ambassador <span class="tag">DEMO</span></div>
+  <nav class="controls" aria-label="Display and accessibility controls">
+    <label class="sel">I am a
+      <select id="audience" aria-label="Audience">
+        <option value="general">Member of the public</option>
+        <option value="investor">Investor</option>
+        <option value="business">Business</option>
+        <option value="student">Student</option>
+        <option value="partner">Partner organisation</option>
+      </select>
+    </label>
+    <button id="btnVoice" class="ghost" aria-pressed="true" title="Spoken answers on/off">🔊 Voice on</button>
+    <button id="btnText" class="ghost" aria-pressed="false" title="Larger text">A+ Text</button>
+    <button id="btnContrast" class="ghost" aria-pressed="false" title="High contrast">◐ Contrast</button>
+    <button id="btnKiosk" class="ghost" title="Full-screen event mode">⛶ Kiosk mode</button>
+    <a class="ghost admin-link" href="admin.html">Admin</a>
+  </nav>
+</header>
+
+<main class="stage">
+  <section class="avatar-wrap" aria-label="Avatar">
+    <div id="avatar" class="avatar idle" aria-hidden="true">
+      <svg viewBox="0 0 240 300" width="100%" height="100%" role="img">
+        <defs>
+          <linearGradient id="g-skin" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f3c9a6"/><stop offset="1" stop-color="#e5ae87"/></linearGradient>
+          <linearGradient id="g-coat" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1f4e79"/><stop offset="1" stop-color="#16395a"/></linearGradient>
+        </defs>
+        <ellipse cx="120" cy="292" rx="80" ry="7" fill="#000" opacity=".12"/>
+        <g class="body">
+          <path d="M40 300 C40 222 70 200 120 200 C170 200 200 222 200 300 Z" fill="url(#g-coat)"/>
+          <path d="M104 200 L120 232 L136 200 Z" fill="#fff"/>
+          <rect x="132" y="236" width="34" height="22" rx="4" fill="#ffd166"/><text x="149" y="251" font-size="9" text-anchor="middle" font-family="sans-serif" fill="#16395a">DEMO</text>
+          <g class="arm"><path d="M196 250 C214 226 222 206 222 190" stroke="url(#g-coat)" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="222" cy="184" r="11" fill="url(#g-skin)"/></g>
+        </g>
+        <g class="head">
+          <rect x="108" y="176" width="24" height="30" rx="8" fill="url(#g-skin)"/>
+          <ellipse cx="120" cy="118" rx="56" ry="64" fill="url(#g-skin)"/>
+          <path d="M64 112 C62 58 98 44 122 46 C156 48 180 70 176 116 C168 88 150 76 120 78 C96 80 76 90 64 112 Z" fill="#3b2a20"/>
+          <g class="eyes">
+            <ellipse class="eye" cx="98" cy="120" rx="7" ry="8" fill="#22313f"/>
+            <ellipse class="eye" cx="142" cy="120" rx="7" ry="8" fill="#22313f"/>
+            <circle cx="100" cy="117" r="2" fill="#fff"/><circle cx="144" cy="117" r="2" fill="#fff"/>
+          </g>
+          <path d="M86 104 Q98 98 110 104" stroke="#3b2a20" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M130 104 Q142 98 154 104" stroke="#3b2a20" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="84" cy="140" rx="8" ry="5" fill="#e88f7a" opacity=".35"/><ellipse cx="156" cy="140" rx="8" ry="5" fill="#e88f7a" opacity=".35"/>
+          <g class="mouth-g"><path class="mouth" d="M104 150 Q120 162 136 150 Q120 156 104 150 Z" fill="#9b3d3d"/></g>
+        </g>
+        <g class="listen-ring"><circle cx="120" cy="118" r="78" fill="none" stroke="#2bb3a3" stroke-width="3"/></g>
+      </svg>
+    </div>
+    <div class="status" id="status" aria-live="polite">Ready</div>
+    <div class="captions" id="captions" aria-live="polite" aria-label="Captions"></div>
+  </section>
+
+  <section class="chat" aria-label="Conversation">
+    <div class="messages" id="messages" role="log" aria-live="polite"></div>
+    <div class="suggest" id="suggest"></div>
+    <form class="ask" id="askForm" autocomplete="off">
+      <button type="button" id="btnMic" class="mic" title="Speak your question" aria-label="Speak your question">🎤</button>
+      <input id="q" type="text" maxlength="300" placeholder="Type or say a question about investing in Suffolk…" aria-label="Your question">
+      <button type="submit" class="primary">Ask</button>
+    </form>
+  </section>
+</main>
+
+<footer class="bottom">
+  <div class="qr-card">
+    <div id="qr" class="qr" aria-label="QR code to the follow-up form"></div>
+    <div><strong>Scan for follow-up</strong><br><small>Opens the follow-up form. In production this points to a Suffolk Economy-owned form.</small></div>
+  </div>
+  <button id="btnLead" class="primary big">Leave your details</button>
+</footer>
+
+<div class="attract" id="attract" hidden>
+  <div class="attract-inner">
+    <div class="attract-hello">👋 Hello! Ask me about Suffolk</div>
+    <div class="attract-prompt" id="attractPrompt"></div>
+    <div class="attract-tap">Tap anywhere or start talking</div>
+    <div class="attract-note">Demonstration by 92 Logics for tender GHI/ED/PSR1 — not an official Suffolk County Council service.</div>
+  </div>
+</div>
+<div class="idle-warn" id="idleWarn" hidden>Still there? This conversation will reset in <span id="idleCount">15</span>s. <button id="btnStay" class="primary">I'm still here</button></div>
+
+<dialog id="leadDlg" aria-labelledby="leadTitle">
+  <form id="leadForm" method="dialog" novalidate>
+    <h2 id="leadTitle">Leave your details</h2>
+    <p class="small">Demo only: details are stored in this browser and can be exported by staff from the admin view. Nothing is sent anywhere.</p>
+    <label>Name <input name="name" required maxlength="100"></label>
+    <label>Company / organisation <input name="company" maxlength="120"></label>
+    <label>Email <input name="email" type="email" required maxlength="160"></label>
+    <label>Main interest
+      <select name="interest">
+        <option>Investing in Suffolk</option><option>Ports &amp; logistics</option><option>Clean energy</option>
+        <option>Tech &amp; innovation</option><option>Skills &amp; education</option><option>Business support</option><option>Other</option>
+      </select>
+    </label>
+    <label class="check"><input type="checkbox" name="consent" required> I agree to be contacted about my enquiry. (Required)</label>
+    <div class="err" id="leadErr" role="alert"></div>
+    <div class="row"><button value="cancel" formnovalidate class="ghost" id="leadCancel">Cancel</button><button id="leadSubmit" class="primary" value="default">Submit</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="vendor/qrcode.js"></script>
+<script src="kb.js"></script>
+<script src="engine.js"></script>
+<script src="store.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

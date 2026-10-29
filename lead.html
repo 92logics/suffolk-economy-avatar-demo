@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Follow-up form (demo) | 92 Logics tender GHI/ED/PSR1</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%232bb3a3%22/%3E%3C/svg%3E"><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="disclaimer" role="note"><strong>Demonstration by 92 Logics for tender GHI/ED/PSR1 — not an official Suffolk County Council service.</strong> In production, the QR code would open a Suffolk Economy-owned form. This demo stores entries only in this browser.</div>
+<div class="lead-page">
+  <form id="f" novalidate>
+    <h2 style="margin:0">Request a follow-up</h2>
+    <label>Name <input name="name" required maxlength="100"></label>
+    <label>Company / organisation <input name="company" maxlength="120"></label>
+    <label>Email <input name="email" type="email" required maxlength="160"></label>
+    <label>Main interest <select name="interest"><option>Investing in Suffolk</option><option>Ports &amp; logistics</option><option>Clean energy</option><option>Tech &amp; innovation</option><option>Skills &amp; education</option><option>Business support</option><option>Other</option></select></label>
+    <label class="check"><input type="checkbox" name="consent" required> I agree to be contacted about my enquiry. (Required)</label>
+    <div class="err" id="err" role="alert"></div>
+    <div class="row"><a class="ghost" href="index.html">Back to the ambassador</a><button class="primary">Submit</button></div>
+    <p id="ok" class="small" hidden></p>
+  </form>
+</div>
+<script src="kb.js"></script><script src="store.js"></script>
+<script>
+document.getElementById("f").addEventListener("submit", function (e) {
+  e.preventDefault(); var f = e.target, err = [];
+  if (!f.name.value.trim()) err.push("Please enter your name.");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim())) err.push("Please enter a valid email.");
+  if (!f.consent.checked) err.push("Please tick the consent box.");
+  document.getElementById("err").textContent = err.join(" "); if (err.length) return;
+  SEAStore.addLead({ name: f.name.value.trim(), company: f.company.value.trim(), email: f.email.value.trim(), interest: f.interest.value, consent: "yes", source: new URLSearchParams(location.search).get("src") || "form", session: "", audience: "" });
+  f.reset(); var ok = document.getElementById("ok"); ok.hidden = false; ok.textContent = "Thank you. Your details were saved (demo: in this browser only).";
+});
+</script>
+</body></html>

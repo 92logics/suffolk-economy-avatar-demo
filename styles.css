@@ -6,7 +6,8 @@ body.large { --fs:20px; }
 body.contrast { --bg:#000; --card:#000; --ink:#fff; --muted:#ddd; --navy:#000; --teal:#ffd400; --teal2:#ffd400; }
 body.contrast .bubble, body.contrast .chip, body.contrast input, body.contrast select { border:2px solid #fff !important; color:#fff !important; background:#000 !important; }
 body.contrast a { color:#ffd400; }
-.disclaimer { position:sticky; top:0; z-index:30; background:#fff4d6; color:#5a3e00; border-bottom:1px solid #f1d38a; padding:6px 14px; font-size:.82em; text-align:center; }
+.topbar { position:sticky; top:0; z-index:30; }
+.disclaimer { background:#fff4d6; color:#5a3e00; border-bottom:1px solid #f1d38a; padding:6px 14px; font-size:.82em; text-align:center; }
 body.contrast .disclaimer { background:#222; color:#fff; }
 .top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; background:var(--navy); color:#fff; flex-wrap:wrap; }
 .brand { font-weight:700; font-size:1.15em; display:flex; align-items:center; gap:8px; }
